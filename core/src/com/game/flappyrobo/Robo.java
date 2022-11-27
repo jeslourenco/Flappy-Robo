@@ -49,6 +49,7 @@ public class Robo {
         x = 20;
         y = FlappyRobo.HEIGHT / 2f;
         state = State.FUN;
+        robot.play();
     }
 
 
@@ -79,6 +80,8 @@ public class Robo {
         if (state != State.OVER && y < 20){
             state = State.OVER;
             velX = 0f;
+
+            robot.stop();
             hit.play();
         }
 
@@ -94,6 +97,8 @@ public class Robo {
 
     public void input() {
         if (state == State.OVER){
+            robot.stop();
+
             return;
         }
 
@@ -108,7 +113,6 @@ public class Robo {
             velY += 8f;
             recharge = RECHARGE;
             rotation = 25f;
-            robot.play();
         }
     }
 
@@ -122,6 +126,9 @@ public class Robo {
         y = FlappyRobo.HEIGHT / 2f;
         state = State.FUN;
         funTime = 1f;
+
+        hit.stop();
+        robot.play();
     }
 
 }
